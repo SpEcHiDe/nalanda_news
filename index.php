@@ -1,3 +1,9 @@
+<?php
+$myfile = fopen("api/contents.txt", "r") or die("Unable to open file!");
+$contents = fread($myfile,filesize("api/contents.txt"));
+$feeds = explode(";",$contents);
+fclose($myfile);
+?>
 <!doctype html>
 <html lang="en">
 
@@ -41,9 +47,11 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
-				<section>
-					<h1>Reveal.js</h1>
-				</section>
+				<?php
+					foreach($feeds as $feed){
+						echo "<section><h1>" . $feed . "</h1></section>";
+					}
+				?>
 
 			</div>
 

@@ -55,7 +55,7 @@
 
       </div>
       </div>
-      
+
 <?php
 if(isset($_POST['sbmtbtn'])){
   $feed1 = $_POST['feed1'];
@@ -63,7 +63,7 @@ if(isset($_POST['sbmtbtn'])){
   $feed3 = $_POST['feed3'];
   $feed4 = $_POST['feed4'];
   $feed5 = $_POST['feed5'];
-  $contents = implode("\n",array($feed1,$feed2,$feed3,$feed4,$feed5)) . "\n";
+  $contents = implode(";",array($feed1,$feed2,$feed3,$feed4,$feed5));
   $myfile = fopen("contents.txt", "w") or die("Unable to create file!");
   fwrite($myfile, $contents);
   fclose($myfile);
