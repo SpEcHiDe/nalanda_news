@@ -1,7 +1,7 @@
 <?php
 $myfile = fopen("api/contents.txt", "r") or die("Unable to open file!");
 $contents = fread($myfile,filesize("api/contents.txt"));
-$feeds = explode(";",$contents);
+$feeds = explode("\n",$contents);
 fclose($myfile);
 ?>
 <!doctype html>
@@ -38,6 +38,8 @@ fclose($myfile);
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+		<link rel="shortcut icon" type="image/png" href="img/logo.png" />
 	</head>
 
 	<body>

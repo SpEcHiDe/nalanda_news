@@ -23,7 +23,7 @@
   <div class="container">
     <div style="height:50px;"></div>
     <div class="row">
-      <div class="col-md-4 col-md-offset-4">
+
         <div class="login-panel panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Enter the FEEDS one by one</h3>
@@ -51,19 +51,16 @@
             </form>
           </div>
         </div>
-      </div>
+
 
       </div>
       </div>
 
 <?php
 if(isset($_POST['sbmtbtn'])){
-  $feed1 = $_POST['feed1'];
-  $feed2 = $_POST['feed2'];
-  $feed3 = $_POST['feed3'];
-  $feed4 = $_POST['feed4'];
-  $feed5 = $_POST['feed5'];
-  $contents = implode(";",array($feed1,$feed2,$feed3,$feed4,$feed5));
+  $feeds = array_filter($_POST);
+  $contents = implode("\n",$feeds);
+  echo $contents;
   $myfile = fopen("contents.txt", "w") or die("Unable to create file!");
   fwrite($myfile, $contents);
   fclose($myfile);
