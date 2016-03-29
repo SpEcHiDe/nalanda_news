@@ -1,3 +1,14 @@
+<?php
+echo "<!--";
+$myfile = fopen("contents.txt", "r") or die("Unable to open file!");
+echo "opened file for reading\n";
+$contents = fread($myfile,filesize("contents.txt"));
+$feeds = explode("\r\n\r\n\r\n",$contents);
+echo "obtained contents inside file\n";
+fclose($myfile);
+echo "-->";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +29,9 @@
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <script src="../js/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="></script>
+  <script src="../js/jquery-2.2.2.min.js"></script>
+
+  <script src="../js/tinymce/tinymce.min.js"></script>
 
   <script type="text/javascript">
 
@@ -32,9 +45,37 @@
 
     function addOneMore(){
       var requiredVal = getNoOfTF() + 1;
-      var requiredHTML = "<div class='form-group'><input tabindex='1' class='form-control' placeholder='enter feed' name='feed" + requiredVal + "' type='text' value='' autofocus></div>";
+      var requiredHTML = "<div class='form-group'><textarea tabindex='1' class='form-control' onkeyup='countChar(this)' id='feed" + requiredVal + "' name='feed" + requiredVal + "' autofocus cols='40' rows='3'></textarea><div id='cc_" + requiredVal + "'></div></div>";
       $(requiredHTML).insertAfter($('.form-group').last());
+      initMCE();
     }
+
+    function countChar(val){
+	  var len = val.value.length;
+	  var display = val.name.split('d')[1];
+	  var the_real_display = '#cc_' + display;
+	  if(len >= 160){
+	    $(the_real_display).text('invalid');
+	  }
+	  else{
+	    $(the_real_display).text(160 - len);
+	  }
+	}
+
+	function initMCE(){
+		tinymce.init(
+			{ 
+				mode : "textareas",
+				plugins: "image",
+				toolbar: "image"
+			}
+		);
+	}
+	
+	$().ready(
+		initMCE()
+	);
+
   </script>
 
 </head>
@@ -52,7 +93,23 @@
             <form role="form" method="POST" action="" accept-charset="UTF-8">
               <fieldset>
 
-                <div class='form-group'><input tabindex='1' class='form-control' placeholder='enter feed' name='feed1' type='text' value='' autofocus></div>
+<?php
+                    $i = 0;
+
+                    foreach(array_filter($feeds) as $feed){
+                      echo "<div class='form-group'>";
+                      echo "<textarea readonly class='form-control' id='feed" . $i . "' name='feed" . $i . "' cols='40' rows='3'>" . $feed . "</textarea>";
+                      echo "</div>";
+                      $i++;
+                    }
+?>
+
+					<div class='form-group'>
+                        <textarea tabindex='1' class='form-control' id='feed<?php echo $i; ?>' name='feed<?php echo $i; ?>' autofocus cols='40' rows='3' onkeyup='countChar(this)'></textarea>
+                        <div id='cc_1'></div>
+                    </div>
+
+
 
                 <button tabindex='2' type="button" name='addtxtbtn' class='btn btn-lg btn-success btn-block' onClick='addOneMore()'>Add more</button>
 
@@ -70,7 +127,7 @@
 <?php
 if(isset($_POST['sbmtbtn'])){
   $feeds = array_filter($_POST);
-  $contents = implode("\n",$feeds);
+  $contents = implode("\r\n\r\n\r\n",$feeds);
   $myfile = fopen("contents.txt", "w") or die("Unable to create file!");
   fwrite($myfile, $contents);
   fclose($myfile);

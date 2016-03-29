@@ -1,10 +1,15 @@
 <?php
+echo "<!--";
 $myfile = fopen("api/contents.txt", "r") or die("Unable to open file!");
+echo "opened file for reading\n";
 $contents = fread($myfile,filesize("api/contents.txt"));
-$feeds = explode("\n",$contents);
+$feeds = explode("\r\n\r\n\r\n",$contents);
+echo "obtained contents inside file\n";
 fclose($myfile);
+echo "-->";
 ?>
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 
 	<head>
