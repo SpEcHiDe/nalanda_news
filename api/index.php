@@ -115,17 +115,43 @@ $(document).on('change', '.btn-file :file', function() {
     var input = $(this),
         numFiles = input.get(0).files ? input.get(0).files.length : 1,
         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.trigger('fileselect', [numFiles, label]);
        document.getElementById('fileSeler').value = label;
 });
 
-$(document).ready( function() {
-    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
-       // console.log(numFiles);
-       // console.log(label);
-       document.getElementById('fileSeler').value = label;
-    });
-});
+function reverse(s){
+    return s.split("").reverse().join("");
+}
+
+    function deleteElmt(element){
+        var selectedRow = element.parentNode.parentNode;
+        var selectedTA = selectedRow.getElementsByTagName('textarea')[0];
+        var TA_text = selectedTA.innerHTML;
+        var AT_text = reverse(TA_text);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            console.log(xhttp.responseText);
+          }
+        }
+        xhttp.open("POST", "remove.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        if(TA_text.indexOf('img src=') == -1){
+          //console.log('text');
+          var formData = "text=" + TA_text + "&txet=" + AT_text + "&q=01";
+console.log(TA_text);
+console.log('&&&');
+console.log(AT_text);
+        }
+        else{
+          //console.log('image');
+          var srcp = TA_text.indexOf('=');
+          var pcrs = TA_text.indexOf(' alt');
+          var src = TA_text.substr(srcp+1,pcrs-srcp-2);
+          var crs = reverse(src);
+          var formData = "text=" + src + "&txet=" + crs + "&q=10";
+        }
+        xhttp.send(formData);
+    }
 
   </script>
 
@@ -219,14 +245,14 @@ if(isset($_POST['sbmtbtn'])){
         if (move_uploaded_file($_FILES["deef" . $value]["tmp_name"], $target_file)) {
           // echo "<div class='alert alert-success'>The file ". basename( $_FILES["deef" . $value]["name"]). " has been uploaded.</div>";
           $a = basename( $_FILES["deef" . $value]["name"]);
-          $contents[] = "<img src='api/img/" . $a . "' alt=''>";
+          $contents[] = "<img src='api/img/" . $a . "'>";
         } else {
           echo "<div class='alert alert-warning'>Sorry, there was an error uploading your file.</div>";
         }
       }
     }
     else{
-      $contents[] = $value;
+      $contents[] = nl2br($value);
     }
   }
 

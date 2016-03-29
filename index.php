@@ -3,7 +3,7 @@ echo "<!--";
 $myfile = fopen("api/contents.txt", "r") or die("Unable to open file!");
 echo "opened file for reading\n";
 $contents = fread($myfile,filesize("api/contents.txt"));
-$feeds = explode("\r\n\r\n\r\n",$contents);
+$feeds = array_filter(explode("\r\n\r\n\r\n",$contents));
 echo "obtained contents inside file\n";
 fclose($myfile);
 echo "-->";
