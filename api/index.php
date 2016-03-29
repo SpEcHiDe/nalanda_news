@@ -29,6 +29,34 @@ echo "-->";
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+  <style>
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+  </style>
+
   <script src="../js/jquery-2.2.2.min.js"></script>
   <script type="text/javascript">
 
@@ -48,8 +76,20 @@ echo "-->";
 
     function addOneMore(type){
       var requiredVal = getNoOfTF() + 1;
-      var requiredHTML_img = "<div class='form-group'><input tabindex='1' class='form-control' placeholder='enter feed' name='deef" + requiredVal + "' type='file' autofocus></div><input type='hidden' name='def" + requiredVal + "' value='" + requiredVal + "'>";
-      var requiredHTML_ta = "<div class='form-group'><textarea tabindex='1' class='form-control' onkeyup='countChar(this)' name='feed" + requiredVal + "' autofocus cols='40' rows='3'></textarea><div id='cc_" + requiredVal + "'></div></div>";
+      var requiredHTML_img = "<div class='form-group'>";
+      requiredHTML_img += "<div class='input-group'>";
+      requiredHTML_img += "<span class='input-group-btn'>";
+      requiredHTML_img += "<span class='btn btn-default btn-file'>";
+      requiredHTML_img += "Browse: <input tabindex='1' class='form-control' placeholder='enter feed' name='deef" + requiredVal + "' type='file'>";
+      requiredHTML_img += "</span>";
+      requiredHTML_img += "</span>";
+      requiredHTML_img += "<input type='text' id='fileSeler' class='form-control' readonly>";
+      requiredHTML_img += "</div>";
+      requiredHTML_img += "</div>";
+      requiredHTML_img += "<input type='hidden' name='def" + requiredVal + "' value='" + requiredVal + "'>";
+      var requiredHTML_ta = "<div class='form-group'>";
+      requiredHTML_ta += "<textarea tabindex='1' class='form-control' onkeyup='countChar(this)' name='feed" + requiredVal + "' autofocus cols='40' rows='3'>";
+      requiredHTML_ta += "</textarea><div id='cc_" + requiredVal + "'></div></div>";
 
       if(type == 'textarea'){
         $(requiredHTML_ta).insertAfter($('.form-group').last());
@@ -70,6 +110,23 @@ echo "-->";
 	    $(the_real_display).text(160 - len);
 	  }
 	}
+
+$(document).on('change', '.btn-file :file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+       document.getElementById('fileSeler').value = label;
+});
+
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+       // console.log(numFiles);
+       // console.log(label);
+       document.getElementById('fileSeler').value = label;
+    });
+});
+
   </script>
 
 </head>
@@ -89,16 +146,18 @@ echo "-->";
                   <?php
                     $i = 1;
                     foreach(array_filter($feeds) as $feed){
-                      echo "<div class='form-group'>";
+                      echo "<div class='row'><div class='col-sm-11'><div class='form-group'>";
                       echo "<textarea readonly class='form-control' name='feed" . $i . "' cols='40' rows='3'>" . $feed . "</textarea>";
-                      echo "</div>";
+                      echo "</div></div><div class='col-sm-1'>";
+                      echo "<button type='button' name='DeleteBtn' class='btn btn-lg btn-block' onClick='deleteElmt(this)'>";
+                      echo "<i class='fa fa-remove'></i></button>";
+                      echo "</div></div>";
                       $i++;
                     }
                   ?>
 
                     <div class='form-group'>
-                        <textarea tabindex='1' class='form-control' name='feed<?php echo $i; ?>' autofocus cols='40' rows='3' onkeyup='countChar(this)'></textarea>
-                        <div id='cc_1'></div>
+                        <!-- This block intentionally left blank -->
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
@@ -176,6 +235,7 @@ if(isset($_POST['sbmtbtn'])){
   fwrite($myfile, $cntents);
   fclose($myfile);
   echo "<div class='alert alert-success'>successfully inserted values</div>";
+  echo "<meta http-equiv='refresh' content='0' />";
 }
 ?>
 
