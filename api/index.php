@@ -1,3 +1,14 @@
+<?php
+echo "<!--";
+$myfile = fopen("contents.txt", "r") or die("Unable to open file!");
+echo "opened file for reading\n";
+$contents = fread($myfile,filesize("contents.txt"));
+$feeds = explode("\r\n\r\n\r\n",$contents);
+echo "obtained contents inside file\n";
+fclose($myfile);
+echo "-->";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +58,7 @@
         $(requiredHTML_img).insertAfter($('.form-group').last());
       }
     }
-    
+
     function countChar(val){
 	  var len = val.value.length;
 	  var display = val.name.split('d')[1];
@@ -64,7 +75,7 @@
 </head>
 <body>
 
-  
+
 <div class="container">
     <div style="height:50px;"></div>
     <div class="login-panel panel panel-default">
@@ -74,8 +85,19 @@
         <div class="panel-body">
             <form role="form" method="POST" action="" accept-charset="UTF-8" enctype="multipart/form-data">
                 <fieldset>
+
+                  <?php
+                    $i = 0;
+                    foreach($feeds as $feed){
+                      echo "<div class='form-group'>";
+                      echo "<textarea readonly class='form-control' name='feed" . $i . "' cols='40' rows='3'>" . $feed . "</textarea>";
+                      echo "</div>";
+                      $i++;
+                    }
+                  ?>
+
                     <div class='form-group'>
-                        <textarea tabindex='1' class='form-control' name='feed1' autofocus cols='40' rows='3' onkeyup='countChar(this)'></textarea>
+                        <textarea tabindex='1' class='form-control' name='feed<?php echo $i; ?>' autofocus cols='40' rows='3' onkeyup='countChar(this)'></textarea>
                         <div id='cc_1'></div>
                     </div>
                     <div class="row">
