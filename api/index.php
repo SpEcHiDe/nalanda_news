@@ -19,7 +19,6 @@
   <![endif]-->
 
   <script src="../js/jquery-2.2.2.min.js"></script>
-
   <script type="text/javascript">
 
     function getNoOfTF(){
@@ -39,7 +38,8 @@
     function addOneMore(type){
       var requiredVal = getNoOfTF() + 1;
       var requiredHTML_img = "<div class='form-group'><input tabindex='1' class='form-control' placeholder='enter feed' name='deef" + requiredVal + "' type='file' autofocus></div><input type='hidden' name='def" + requiredVal + "' value='" + requiredVal + "'>";
-      var requiredHTML_ta = "<div class='form-group'><textarea tabindex='1' class='form-control' name='feed" + requiredVal + "' autofocus cols='40' rows='3'></textarea></div>";
+      var requiredHTML_ta = "<div class='form-group'><textarea tabindex='1' class='form-control' onkeyup='countChar(this)' name='feed" + requiredVal + "' autofocus cols='40' rows='3'></textarea><div id='cc_" + requiredVal + "'></div></div>";
+
       if(type == 'textarea'){
         $(requiredHTML_ta).insertAfter($('.form-group').last());
       }
@@ -47,44 +47,52 @@
         $(requiredHTML_img).insertAfter($('.form-group').last());
       }
     }
+    
+    function countChar(val){
+	  var len = val.value.length;
+	  var display = val.name.split('d')[1];
+	  var the_real_display = '#cc_' + display;
+	  if(len >= 160){
+	    $(the_real_display).text('invalid');
+	  }
+	  else{
+	    $(the_real_display).text(160 - len);
+	  }
+	}
   </script>
 
 </head>
 <body>
 
-  <div class="container">
+  
+<div class="container">
     <div style="height:50px;"></div>
-
-
-        <div class="login-panel panel panel-default">
-          <div class="panel-heading">
+    <div class="login-panel panel panel-default">
+        <div class="panel-heading">
             <h3 class="panel-title">Enter the FEEDS one by one</h3>
-          </div>
-          <div class="panel-body">
-            <form role="form" method="POST" action="" accept-charset="UTF-8" enctype="multipart/form-data">
-              <fieldset>
-
-                <div class='form-group'><textarea tabindex='1' class='form-control' name='feed1' autofocus cols='40' rows='3'></textarea></div>
-
-<div class="row">
-  <div class="col-sm-6">
-                <button tabindex='2' type="button" name='addtxtbtn' class='btn btn-lg btn-success btn-block' onClick="addOneMore('textarea')">Add Text</button>
-  </div>
-  <div class="col-sm-6">
-                <button tabindex='2' type="button" name='addtxtbtn' class='btn btn-lg btn-success btn-block' onClick="addOneMore('img')">Add Image</button>
-  </div>
-</div>
-
-<div style="height:10px;"></div>
-
-                <button tabindex='4' type='submit' name='sbmtbtn' class='btn btn-lg btn-success btn-block'>Submit</button>
-
-              </fieldset>
-            </form>
-          </div>
         </div>
-
-      </div>
+        <div class="panel-body">
+            <form role="form" method="POST" action="" accept-charset="UTF-8" enctype="multipart/form-data">
+                <fieldset>
+                    <div class='form-group'>
+                        <textarea tabindex='1' class='form-control' name='feed1' autofocus cols='40' rows='3' onkeyup='countChar(this)'></textarea>
+                        <div id='cc_1'></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button tabindex='2' type="button" name='addtxtbtn' class='btn btn-lg btn-success btn-block' onClick="addOneMore('textarea')">Add Text</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button tabindex='2' type="button" name='addtxtbtn' class='btn btn-lg btn-success btn-block' onClick="addOneMore('img')">Add Image</button>
+                        </div>
+                    </div>
+                    <div style="height:10px;"></div>
+                    <button tabindex='4' type='submit' name='sbmtbtn' class='btn btn-lg btn-success btn-block'>Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?php
 if(isset($_POST['sbmtbtn'])){
@@ -141,7 +149,7 @@ if(isset($_POST['sbmtbtn'])){
     }
   }
 
-  $cntents = implode("\n",$contents);
+  $cntents = implode("\r\n\r\n\r\n",$contents);
 
   fwrite($myfile, $cntents);
   fclose($myfile);
