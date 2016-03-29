@@ -87,8 +87,8 @@ echo "-->";
                 <fieldset>
 
                   <?php
-                    $i = 0;
-                    foreach($feeds as $feed){
+                    $i = 1;
+                    foreach(array_filter($feeds) as $feed){
                       echo "<div class='form-group'>";
                       echo "<textarea readonly class='form-control' name='feed" . $i . "' cols='40' rows='3'>" . $feed . "</textarea>";
                       echo "</div>";
