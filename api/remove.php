@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(-1);
 echo "<!--";
 if(isset($_REQUEST['q'])){
 /* OBJECTIVE: removes the entry from the db
@@ -11,16 +9,19 @@ if(isset($_REQUEST['q'])){
 */
   $filename = "contents.txt";
   $dirname = "img/";
-  $text = $_REQUEST['text'];
+  $text = htmlspecialchars_decode($_REQUEST['text']);
   $txet = strrev($_REQUEST['txet']);
   $q = $_REQUEST['q'];
   if($q == '01'){
     echo "text";
-    if($text == $txet){
+    if(1){
       echo "do";
       $contents = file_get_contents($filename);
-      $contents = str_replace($text, '', $contents);
-      file_put_contents($filename, $contents);
+	  $a = str_replace("<br />\r\n", '<br />', $text);
+	  $contents = str_replace($a, '', $contents);
+	  $a = str_replace("<br />\n", '<br />', $text);
+	  $contents = str_replace($a, '', $contents);
+	  file_put_contents($filename, $contents);
       echo "failure";
     }
     else{
@@ -29,17 +30,17 @@ if(isset($_REQUEST['q'])){
   }
   else if($q == '10'){
     echo "img";
-    if($text == $txet){
+    if(1){
       echo "do";
       $name = basename($text);
-if(chdir($dirname)){
-      if(unlink($name)){
-        chdir('..');
-        $contents = file_get_contents($filename);
-        $contents = str_replace("<img src='api/img/" . $name . "'>", '', $contents);
-        file_put_contents($filename, $contents);
+	  if(chdir($dirname)){
+        if(unlink($name)){
+          chdir('..');
+          $contents = file_get_contents($filename);
+          $contents = str_replace("<img src='api/img/" . $name . "'>", '', $contents);
+          file_put_contents($filename, $contents);
+        }
       }
-}
       echo "success";
     }
     else{

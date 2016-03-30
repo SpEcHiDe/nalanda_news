@@ -8,7 +8,8 @@ echo "obtained contents inside file\n";
 fclose($myfile);
 echo "-->";
 ?>
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 
 	<head>
@@ -44,6 +45,14 @@ echo "-->";
 		<![endif]-->
 
 		<link rel="shortcut icon" type="image/png" href="img/logo.png" />
+		
+		<style>
+img{
+	width: 100%;
+	height: 100%;
+}
+		</style>
+		
 	</head>
 
 	<body>
@@ -78,10 +87,10 @@ echo "-->";
 				loop: true,
 
 				// Number of milliseconds between automatically proceeding to the
-    		// next slide, disabled when set to 0, this value can be overwritten
-    		// by using a data-autoslide attribute on your slides
-    		autoSlide: 60000,
-
+				// next slide, disabled when set to 0, this value can be overwritten
+				// by using a data-autoslide attribute on your slides
+				autoSlide: 60000,
+				
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins

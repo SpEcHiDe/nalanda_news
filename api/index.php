@@ -138,9 +138,6 @@ function reverse(s){
         if(TA_text.indexOf('img src=') == -1){
           //console.log('text');
           var formData = "text=" + TA_text + "&txet=" + AT_text + "&q=01";
-console.log(TA_text);
-console.log('&&&');
-console.log(AT_text);
         }
         else{
           //console.log('image');
