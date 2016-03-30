@@ -118,38 +118,6 @@ $(document).on('change', '.btn-file :file', function() {
        document.getElementById('fileSeler').value = label;
 });
 
-function reverse(s){
-    return s.split("").reverse().join("");
-}
-
-    function deleteElmt(element){
-        var selectedRow = element.parentNode.parentNode;
-        var selectedTA = selectedRow.getElementsByTagName('textarea')[0];
-        var TA_text = selectedTA.innerHTML;
-        var AT_text = reverse(TA_text);
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (xhttp.readyState == 4 && xhttp.status == 200) {
-            console.log(xhttp.responseText);
-          }
-        }
-        xhttp.open("POST", "remove.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        if(TA_text.indexOf('img src=') == -1){
-          //console.log('text');
-          var formData = "text=" + TA_text + "&txet=" + AT_text + "&q=01";
-        }
-        else{
-          //console.log('image');
-          var srcp = TA_text.indexOf('=');
-          var pcrs = TA_text.indexOf(' alt');
-          var src = TA_text.substr(srcp+1,pcrs-srcp-2);
-          var crs = reverse(src);
-          var formData = "text=" + src + "&txet=" + crs + "&q=10";
-        }
-        xhttp.send(formData);
-    }
-
   </script>
 
 </head>
@@ -169,12 +137,9 @@ function reverse(s){
                   <?php
                     $i = 1;
                     foreach(array_filter($feeds) as $feed){
-                      echo "<div class='row'><div class='col-sm-11'><div class='form-group'>";
+                      echo "<div class='form-group'>";
                       echo "<textarea readonly class='form-control' name='feed" . $i . "' cols='40' rows='3'>" . $feed . "</textarea>";
-                      echo "</div></div><div class='col-sm-1'>";
-                      echo "<button type='button' name='DeleteBtn' class='btn btn-lg btn-block' onClick='deleteElmt(this)'>";
-                      echo "<i class='fa fa-remove'></i></button>";
-                      echo "</div></div>";
+                      echo "</div>";
                       $i++;
                     }
                   ?>
