@@ -44,6 +44,17 @@ echo "-->";
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+<script src="js/jquery-2.2.2.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
 		<link rel="shortcut icon" type="image/png" href="img/logo.png" />
 		
 		<style>
@@ -63,12 +74,12 @@ img{
 
 				<?php
 					foreach($feeds as $feed){
-						echo "<section><h1>" . $feed . "</h1></section>";
+						echo "<section data-autoslide='10000'  data-background=#000><h1>" . $feed . "</h1></section>";
 					}
 				?>
 
 <?php
-$filenames = array("http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102102033",
+$courses = array("http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102102033",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102105034",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105101082",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105101084",
@@ -205,9 +216,43 @@ $filenames = array("http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102102033",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122107037",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122108038",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/123105001");
-$req_format = implode(",",$filenames);
+
+$filenames = array(
+"lec01.mp4",
+"lec02.mp4",
+"lec03.mp4",
+"lec04.mp4",
+"lec05.mp4",
+"lec06.mp4",
+"lec07.mp4",
+"lec08.mp4",
+"lec09.mp4",
+"lec10.mp4"
+);
 ?>
-<section data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
+
+<?php
+$r1 = rand(1,10);
+$r2 = rand(1,137);
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
+?>
+<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
+</section>
+
+<?php
+$r1 = rand(1,10);
+$r2 = rand(1,137);
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
+?>
+<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
+</section>
+
+<?php
+$r1 = rand(1,10);
+$r2 = rand(1,137);
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
+?>
+<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
 </section>
 
 			</div>
@@ -245,6 +290,38 @@ $req_format = implode(",",$filenames);
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
+
+Reveal.addEventListener('ready', function(event) {
+    // Declare a function to randomize a jQuery list of elements
+    // see http://stackoverflow.com/a/11766418/472021 for details           
+    $.fn.randomize = function(selector){
+        (selector ? this.find(selector) : this).parent().each(function(){
+            $(this).children(selector).sort(function(){
+                return Math.random() - 0.5;
+            }).detach().appendTo(this);
+        });
+
+        return this;
+    };
+
+    // call our new method on all sections inside of the main slides element.
+    $(".slides > section").randomize();
+});
+
+/*
+var wasLastPageHit = false;
+Reveal.addEventListener('slidechanged', function(event) {           
+    if (wasLastPageHit) {
+        window.location.reload();
+    }       
+
+    if($(event.currentSlide).is(":last-child")) {
+        // The newly opened slide is the last one, set up a marker
+        // so the next time this method is called we can refresh.
+        wasLastPageHit = true;
+    }
+});
+*/
 
 		</script>
 
