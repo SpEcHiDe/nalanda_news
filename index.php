@@ -74,6 +74,10 @@ img{
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
+				<section data-autoslide='240000' data-background=#000>
+					<iframe class="stretch" src="https://www.youtube.com/embed/c2IoirDTiXw?autoplay=1" frameborder="0" allowfullscreen></iframe>
+				</section>
+
 				<?php
 					foreach($feeds as $feed){
 						echo "<section data-autoslide='10000'  data-background=#000><h1>" . $feed . "</h1></section>";
@@ -223,27 +227,27 @@ $filenames = array(
 ?>
 
 <?php
-$r1 = rand(1,10);
-$r2 = rand(1,137);
+$r1 = rand(1,count($filenames));
+$r2 = rand(1,count($courses));
 $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 ?>
-<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
+<section data-autoslide="120000" data-ignore data-background-video="<?php echo $req_format; ?>">
 </section>
 
 <?php
-$r1 = rand(1,10);
-$r2 = rand(1,137);
+$r1 = rand(1,count($filenames));
+$r2 = rand(1,count($courses));
 $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 ?>
-<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
+<section data-autoslide="120000" data-ignore data-background-video="<?php echo $req_format; ?>">
 </section>
 
 <?php
-$r1 = rand(1,10);
-$r2 = rand(1,137);
+$r1 = rand(1,count($filenames));
+$r2 = rand(1,count($courses));
 $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 ?>
-<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
+<section data-autoslide="120000" data-ignore data-background-video="<?php echo $req_format; ?>">
 </section>
 
 			</div>
