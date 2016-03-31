@@ -234,7 +234,7 @@ $filenames = array(
 <?php
 $r1 = rand(1,10);
 $r2 = rand(1,137);
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=600,900";
 ?>
 <section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
 </section>
@@ -242,7 +242,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
 <?php
 $r1 = rand(1,10);
 $r2 = rand(1,137);
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900,1200";
 ?>
 <section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
 </section>
@@ -250,7 +250,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
 <?php
 $r1 = rand(1,10);
 $r2 = rand(1,137);
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=1200,1500";
 ?>
 <section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
 </section>
@@ -268,7 +268,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
-				progress: true,
+				// progress: true,
 				history: true,
 				center: true,
 				loop: true,
@@ -277,7 +277,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
 				// next slide, disabled when set to 0, this value can be overwritten
 				// by using a data-autoslide attribute on your slides
 				autoSlide: 60000,
-				
+
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
@@ -293,7 +293,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1];
 
 Reveal.addEventListener('ready', function(event) {
     // Declare a function to randomize a jQuery list of elements
-    // see http://stackoverflow.com/a/11766418/472021 for details           
+    // see http://stackoverflow.com/a/11766418/472021 for details
     $.fn.randomize = function(selector){
         (selector ? this.find(selector) : this).parent().each(function(){
             $(this).children(selector).sort(function(){
@@ -310,10 +310,10 @@ Reveal.addEventListener('ready', function(event) {
 
 /*
 var wasLastPageHit = false;
-Reveal.addEventListener('slidechanged', function(event) {           
+Reveal.addEventListener('slidechanged', function(event) {
     if (wasLastPageHit) {
         window.location.reload();
-    }       
+    }
 
     if($(event.currentSlide).is(":last-child")) {
         // The newly opened slide is the last one, set up a marker
