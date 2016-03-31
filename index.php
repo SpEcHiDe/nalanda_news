@@ -225,7 +225,7 @@ $filenames = array(
 <?php
 $r1 = rand(1,10);
 $r2 = rand(1,137);
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=600,900";
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 ?>
 <section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
 </section>
@@ -233,7 +233,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=600,900";
 <?php
 $r1 = rand(1,10);
 $r2 = rand(1,137);
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900,1200";
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 ?>
 <section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
 </section>
@@ -241,7 +241,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900,1200";
 <?php
 $r1 = rand(1,10);
 $r2 = rand(1,137);
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=1200,1500";
+$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 ?>
 <section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
 </section>
@@ -292,18 +292,15 @@ Reveal.addEventListener('ready', function(event) {
                 return Math.random() - 0.5;
             }).detach().appendTo(this);
         });
-
         return this;
     };
-
     // call our new method on all sections inside of the main slides element.
     $(".slides > section").randomize();
 });
 
 Reveal.addEventListener('slidechanged', function(event) {
-	
+		console.log('slide changed!');
 });
-
 
 		</script>
 
