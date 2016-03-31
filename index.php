@@ -48,8 +48,7 @@ echo "-->";
 		
 		<style>
 img{
-	width: 100%;
-	height: 100%;
+  height: 100vh;
 }
 		</style>
 		
@@ -67,6 +66,13 @@ img{
 						echo "<section><h1>" . $feed . "</h1></section>";
 					}
 				?>
+
+<?php
+$filenames = array();
+$req_format = implode(",",$filenames);
+?>
+<section data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
+</section>
 
 			</div>
 
