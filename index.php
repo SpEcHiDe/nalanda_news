@@ -18,7 +18,7 @@ echo "-->";
 		<title>Presentation</title>
 
 		<meta name="description" content="an interface to store and display top news items">
-	  <meta name="author" content="NALANDA Admin Team">
+	    <meta name="author" content="NALANDA Admin Team">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -44,23 +44,25 @@ echo "-->";
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
-<script src="js/jquery-2.2.2.min.js"></script>
+		<script src="js/jquery-2.2.2.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
 
 		<link rel="shortcut icon" type="image/png" href="img/logo.png" />
 		
 		<style>
+
 img{
   height: 100vh;
 }
+
 		</style>
 		
 	</head>
@@ -79,7 +81,8 @@ img{
 				?>
 
 <?php
-$courses = array("http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102102033",
+$courses = array(
+"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102102033",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102105034",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105101082",
 "http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105101084",
@@ -236,7 +239,7 @@ $r1 = rand(1,10);
 $r2 = rand(1,137);
 $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=600,900";
 ?>
-<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
+<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
 </section>
 
 <?php
@@ -244,7 +247,7 @@ $r1 = rand(1,10);
 $r2 = rand(1,137);
 $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900,1200";
 ?>
-<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
+<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
 </section>
 
 <?php
@@ -252,7 +255,7 @@ $r1 = rand(1,10);
 $r2 = rand(1,137);
 $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=1200,1500";
 ?>
-<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>" data-background-video-loop>
+<section data-autoslide="120000" data-background-video="<?php echo $req_format; ?>">
 </section>
 
 			</div>
@@ -267,9 +270,9 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=1200,1500";
 			// Full list of configuration options available at:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
-				// progress: true,
-				history: true,
+				controls: false,
+				progress: false,
+				history: false,
 				center: true,
 				loop: true,
 
@@ -277,6 +280,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=1200,1500";
 				// next slide, disabled when set to 0, this value can be overwritten
 				// by using a data-autoslide attribute on your slides
 				autoSlide: 60000,
+				autoSlideStoppable: false,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
@@ -308,20 +312,10 @@ Reveal.addEventListener('ready', function(event) {
     $(".slides > section").randomize();
 });
 
-/*
-var wasLastPageHit = false;
 Reveal.addEventListener('slidechanged', function(event) {
-    if (wasLastPageHit) {
-        window.location.reload();
-    }
-
-    if($(event.currentSlide).is(":last-child")) {
-        // The newly opened slide is the last one, set up a marker
-        // so the next time this method is called we can refresh.
-        wasLastPageHit = true;
-    }
+	
 });
-*/
+
 
 		</script>
 
