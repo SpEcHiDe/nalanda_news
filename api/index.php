@@ -73,6 +73,20 @@ input[readonly] {
       }
       return (count + tnuoc);
     }
+    
+	function encodeImageFileAsURL(){
+
+		var filesSelected = document.getElementById("inputFileToLoad").files;
+		if (filesSelected.length > 0){
+			var fileToLoad = filesSelected[0];
+			var fileReader = new FileReader();
+			fileReader.onload = function(fileLoadedEvent) {
+				var srcData = fileLoadedEvent.target.result; // <--- data: base64
+				document.getElementById('fileSeler').value = srcData;
+			}
+			fileReader.readAsDataURL(fileToLoad);
+		}
+	}
 
     function addOneMore(type){
       var requiredVal = getNoOfTF() + 1;
@@ -80,10 +94,10 @@ input[readonly] {
       requiredHTML_img += "<div class='input-group'>";
       requiredHTML_img += "<span class='input-group-btn'>";
       requiredHTML_img += "<span class='btn btn-default btn-file'>";
-      requiredHTML_img += "Browse: <input tabindex='1' class='form-control' placeholder='enter feed' name='deef" + requiredVal + "' type='file'>";
+      requiredHTML_img += "Browse: <input onchange='encodeImageFileAsURL();' tabindex='1' class='form-control' placeholder='enter feed' name='deef" + requiredVal + "' id='inputFileToLoad' type='file'>";
       requiredHTML_img += "</span>";
       requiredHTML_img += "</span>";
-      requiredHTML_img += "<input type='text' id='fileSeler' class='form-control' readonly>";
+      requiredHTML_img += "<input type='text' id='fileSeler' name='fileSeler" + requiredVal + "' class='form-control' readonly><div id='imgTest'></div>";
       requiredHTML_img += "</div>";
       requiredHTML_img += "</div>";
       requiredHTML_img += "<input type='hidden' name='def" + requiredVal + "' value='" + requiredVal + "'>";
@@ -111,12 +125,14 @@ input[readonly] {
 	  }
 	}
 
+/*
 $(document).on('change', '.btn-file :file', function() {
     var input = $(this),
         numFiles = input.get(0).files ? input.get(0).files.length : 1,
         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
        document.getElementById('fileSeler').value = label;
 });
+*/
 
   </script>
 
@@ -138,7 +154,7 @@ $(document).on('change', '.btn-file :file', function() {
                     $i = 1;
                     foreach(array_filter($feeds) as $feed){
                       echo "<div class='form-group'>";
-                      echo "<textarea readonly class='form-control' name='feed" . $i . "' cols='40' rows='3'>" . $feed . "</textarea>";
+                      echo "<textarea class='form-control' name='feed" . $i . "' cols='40' rows='3'>" . $feed . "</textarea>";
                       echo "</div>";
                       $i++;
                     }
@@ -170,56 +186,19 @@ if(isset($_POST['sbmtbtn'])){
   $contents = array();
   foreach($feeds as $key=>$value){
     if(substr($key,0,3) == 'def'){
-      $target_dir = "img/";
-      $target_file = $target_dir . basename($_FILES["deef" . $value]["name"]);
-      // echo $target_file;
-      $uploadOk = 1;
-      $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-      // Check if image file is a actual image or fake image
-      $check = getimagesize($_FILES["deef" . $value]["tmp_name"]);
-      if($check !== false) {
-        //echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-      } else {
-        echo "<div class='alert alert-warning'>File is not an image.</div>";
-        $uploadOk = 0;
-      }
-      // Check if file already exists
-      if (file_exists($target_file)) {
-        echo "<div class='alert alert-warning'>Sorry, file already exists.</div>";
-        $uploadOk = 0;
-      }
-      // Check file size greater than 5MiB
-      if ($_FILES["deef" . $value]["size"] > 5000000) {
-        echo "<div class='alert alert-warning'>Sorry, your file is too large.</div>";
-        $uploadOk = 0;
-      }
-      // Allow certain file formats
-      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-        echo "<div class='alert alert-warning'>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</div>";
-        $uploadOk = 0;
-      }
-      // Check if $uploadOk is set to 0 by an error
-      if ($uploadOk == 0) {
-        echo "<div class='alert alert-warning'>Sorry, your file was not uploaded.</div>";
-        // if everything is ok, try to upload file
-      } else {
-        if (move_uploaded_file($_FILES["deef" . $value]["tmp_name"], $target_file)) {
-          // echo "<div class='alert alert-success'>The file ". basename( $_FILES["deef" . $value]["name"]). " has been uploaded.</div>";
-          $a = basename( $_FILES["deef" . $value]["name"]);
-          $contents[] = "<img src='api/img/" . $a . "'>";
-        } else {
-          echo "<div class='alert alert-warning'>Sorry, there was an error uploading your file.</div>";
-        }
-      }
+		// really BAD php file
+		// no one will understand what this does
+		$base64str = $_POST['fileSeler' . $value];
+		$cnts = "<img src='" . $base64str . "'>";
+		$contents[] = $cnts;
     }
     else{
-      $contents[] = nl2br($value);
+		if (0 === strpos($key, 'feed')) {
+			$contents[] = nl2br($value);
+		}
     }
   }
-
   $cntents = implode("\r\n\r\n\r\n",$contents);
-
   fwrite($myfile, $cntents);
   fclose($myfile);
   echo "<div class='alert alert-success'>successfully inserted values</div>";
