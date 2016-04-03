@@ -56,7 +56,7 @@ echo "-->";
 		<script src="js/bootstrap.min.js"></script>
 
 		<link rel="shortcut icon" type="image/png" href="img/logo.png" />
-		
+
 		<style>
 
 img{
@@ -64,7 +64,7 @@ img{
 }
 
 		</style>
-		
+
 	</head>
 
 	<body>
@@ -74,181 +74,11 @@ img{
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
-				<section data-autoslide='240000' data-background=#000>
-					<iframe class="stretch" src="https://www.youtube.com/embed/c2IoirDTiXw?autoplay=1" frameborder="0" allowfullscreen></iframe>
-				</section>
-
 				<?php
 					foreach($feeds as $feed){
-						echo "<section data-autoslide='10000'  data-background=#000><h1>" . $feed . "</h1></section>";
+						echo "<section data-autoslide='10000' data-background=#000><h1>" . $feed . "</h1></section>\n";
 					}
 				?>
-
-<?php
-$courses = array(
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102102033",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/102105034",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105101082",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105101084",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105101086",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105102088",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105104099",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105104101",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105104103",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105105105",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105105106",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105105107",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105105108",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105106116",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105106118",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105106119",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105107121",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/105107123",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106101060",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106101061",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106102062",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106102064",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106102065",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106102067",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106104074",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106105077",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106105079",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106105081",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106105082",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106105083",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106105084",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106105085",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106106090",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106106092",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106106093",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106106094",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/106108102",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108101037",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108101038",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108102042",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108102043",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108102045",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108102047",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108102080",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108104049",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108104052",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105054",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105055",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105056",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105058",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105059",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105060",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105062",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105064",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105065",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108105067",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108106068",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108106069",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108106073",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108106075",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108108076",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/108108077",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112101095",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112101097",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112101099",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112102101",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112102106",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112104114",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112104115",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112104121",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112105123",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112105124",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112105126",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112105128",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112106130",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112106131",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112106134",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112106135",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112106138",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112106140",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/112107147",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/113105057",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/114105029",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/114105030",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/114105031",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117101050",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117101051",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117101056",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117102059",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117102060",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117102062",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105075",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105078",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105079",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105080",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105081",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105082",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105084",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117105085",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117106086",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117106087",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117106088",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117106089",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117106091",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117106092",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/117106093",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122102004",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122102007",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122102008",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122102009",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122104015",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122104016",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122104017",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122105020",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122105021",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122105022",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122105023",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122105024",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122106025",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122106027",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122106028",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122106033",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122106034",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/122108038",
-"http://192.168.240.11/hdd1/NPTEL/Phase1_Video/123105001");
-
-$filenames = array(
-"lec01.mp4",
-"lec02.mp4",
-"lec03.mp4",
-"lec04.mp4",
-"lec05.mp4",
-"lec06.mp4",
-"lec07.mp4",
-"lec08.mp4",
-"lec09.mp4",
-"lec10.mp4"
-);
-?>
-
-<?php
-$r1 = rand(1,count($filenames));
-$r2 = rand(1,count($courses));
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
-?>
-<section data-autoslide="120000" data-ignore data-background-video="<?php echo $req_format; ?>">
-</section>
-
-<?php
-$r1 = rand(1,count($filenames));
-$r2 = rand(1,count($courses));
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
-?>
-<section data-autoslide="120000" data-ignore data-background-video="<?php echo $req_format; ?>">
-</section>
-
-<?php
-$r1 = rand(1,count($filenames));
-$r2 = rand(1,count($courses));
-$req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
-?>
-<section data-autoslide="120000" data-ignore data-background-video="<?php echo $req_format; ?>">
-</section>
 
 			</div>
 
@@ -274,7 +104,7 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 				autoSlide: 60000,
 				autoSlideStoppable: false,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				transition: 'none', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
 				dependencies: [
@@ -286,25 +116,6 @@ $req_format = $courses[$r2 - 1] . "/" . $filenames[$r1 - 1] . "#t=900";
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
-
-Reveal.addEventListener('ready', function(event) {
-    // Declare a function to randomize a jQuery list of elements
-    // see http://stackoverflow.com/a/11766418/472021 for details
-    $.fn.randomize = function(selector){
-        (selector ? this.find(selector) : this).parent().each(function(){
-            $(this).children(selector).sort(function(){
-                return Math.random() - 0.5;
-            }).detach().appendTo(this);
-        });
-        return this;
-    };
-    // call our new method on all sections inside of the main slides element.
-    $(".slides > section").randomize();
-});
-
-Reveal.addEventListener('slidechanged', function(event) {
-		console.log('slide changed!');
-});
 
 		</script>
 
