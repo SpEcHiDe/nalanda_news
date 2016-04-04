@@ -80,7 +80,7 @@ img, video, iframe {
 
 				<?php
 					foreach($feeds as $feed){
-						echo "<section data-background=#000><h1>" . $feed . "</h1></section>\n";
+						echo "<section data-background=#fff><h1>" . $feed . "</h1></section>\n";
 					}
 				?>
 
