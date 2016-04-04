@@ -213,7 +213,7 @@ input[readonly] {
       }
       return (count + tnuoc);
     }
-    
+
 	function encodeImageFileAsURL(){
 		var filesSelected = document.getElementById("inputFileToLoad").files;
 		if (filesSelected.length > 0){
@@ -222,17 +222,17 @@ input[readonly] {
 			var fileReader = new FileReader();
 			fileReader.onload = function(fileLoadedEvent) {
 				var srcData = fileLoadedEvent.target.result; // <--- data: base64
-				document.getElementById('fileSeler').value = "<img src='" + srcData + "' alt='" + label + "'>";
+				document.getElementById('fileSeler').value = "<img src=\"" + srcData + "\" alt=\"" + label + "\">";
 			}
 			fileReader.readAsDataURL(fileToLoad);
 		}
 	}
-	
-	function encodeVideoAsText(val,r){
+
+    function encodeVideoAsText(val,r){
 		var reqtext = val.options[val.selectedIndex].innerHTML;
 		var a = 'nptel' + r;
 		var inEmt = document.getElementById(a);
-		inEmt.value = "<video><source data-src='" + reqtext + "' type='video/mp4' /></video>";
+		inEmt.value = "<video><source class='stretch' data-src='" + reqtext + "' type='video/mp4' /></video>";
 	}
 
     function addOneMore(type){
@@ -253,7 +253,7 @@ input[readonly] {
       var requiredHTML_nptel = "<div class='form-group'>";
       requiredHTML_nptel += "<select class='form-control' onchange=\"encodeVideoAsText(this,'" + requiredVal + "')\">";
       requiredHTML_nptel += "<option>NA</option>";
-            
+
       <?php
         foreach($courses as $course){
 			foreach($filenames as $filename){
@@ -261,7 +261,7 @@ input[readonly] {
 			}
 		}
       ?>
-      
+
       requiredHTML_nptel += "</select>";
       requiredHTML_nptel += "<input type='hidden' id='nptel" + requiredVal + "' name='nptel" + requiredVal + "'>";
       requiredHTML_nptel += "</div>";

@@ -18,7 +18,7 @@ echo "-->";
 		<title>Presentation</title>
 
 		<meta name="description" content="an interface to store and display top news items">
-	    <meta name="author" content="NALANDA Admin Team">
+                <meta name="author" content="NALANDA Admin Team">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -62,6 +62,10 @@ echo "-->";
 img{
   height: 100vh;
 }
+img, video, iframe {
+    min-width: 100%;
+    height: 100vh;
+}
 
 		</style>
 
@@ -76,7 +80,7 @@ img{
 
 				<?php
 					foreach($feeds as $feed){
-						echo "<section data-autoslide='10000' data-background=#000><h1>" . $feed . "</h1></section>\n";
+						echo "<section data-background=#000><h1>" . $feed . "</h1></section>\n";
 					}
 				?>
 
@@ -94,7 +98,7 @@ img{
 			Reveal.initialize({
 				controls: false,
 				progress: false,
-				history: false,
+				history: true,
 				center: true,
 				loop: true,
 
