@@ -242,7 +242,7 @@ input[readonly] {
 		var reqtext = val.options[val.selectedIndex].innerHTML;
 		var a = 'nptel' + r;
 		var inEmt = document.getElementById(a);
-		inEmt.value = "<video><source class='stretch' data-src='" + reqtext + "' type='video/mp4' /></video>";
+		inEmt.value = "<video data-autoplay><source class='stretch' data-src='" + reqtext + "' type='video/mp4' /></video>";
 	}
 
     function addOneMore(type){

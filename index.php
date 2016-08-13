@@ -18,7 +18,7 @@ echo "-->";
 		<title>Presentation</title>
 
 		<meta name="description" content="an interface to store and display top news items">
-                <meta name="author" content="NALANDA Admin Team">
+    <meta name="author" content="NALANDA Admin Team">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -59,7 +59,7 @@ echo "-->";
 
 		<style>
 
-img{
+img {
   height: 100vh;
 }
 img, video, iframe {
